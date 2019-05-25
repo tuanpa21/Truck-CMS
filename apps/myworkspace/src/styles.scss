@@ -1,1 +1,25 @@
 /* You can add global styles to this file, and also import other style files */
+$fa-font-path: "~node_modules/font-awesome/fonts";
+@import "~font-awesome/scss/font-awesome.scss";
+@import '~bootstrap/scss/bootstrap.scss';
+body {
+  padding-top: 5rem;
+  font-family: sans-serif;
+}
+
+button {
+  cursor: pointer;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0
+  }
+  100% {
+    opacity: 1
+  }
+}
+
+.btn {
+  margin: 3px;
+}
