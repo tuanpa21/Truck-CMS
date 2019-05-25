@@ -1,3 +1,6 @@
-<p>
-  truck-detail works!
-</p>
+<myworkspace-detail
+        [item]="truckDetail$ | async"
+        [detailInfo]="detailInfo"
+        (edit)="editTruck($event)"
+        (remove)="deleteTruck($event)"
+></myworkspace-detail>

@@ -1,3 +1,8 @@
-<p>
-  truck-index works!
-</p>
+<h1> Contact list</h1>
+
+<myworkspace-list [lists]="trucks$ | async"
+                  [tableConfig]="tableConfig"
+                  (show)="detailTruck($event)"
+                  (remove)="deleteTruck($event)"
+                  (edit)="editTruck($event)"
+></myworkspace-list>

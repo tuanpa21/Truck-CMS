@@ -7,7 +7,7 @@ import { DriverDetailComponent } from './driver-detail/driver-detail.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/index'
+    redirectTo: '/drivers/index'
   },
   {
     path: 'index',

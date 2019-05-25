@@ -4,11 +4,17 @@ import { ToolbarComponent } from '../components/toolbar/toolbar.component';
 import { FooterComponent } from '../components/footer/footer.component';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ListComponent } from '../components/list/list.component';
+import { DetailComponent } from '../components/detail/detail.component';
+import { EditComponent } from '../components/edit/edit.component';
 
 @NgModule({
   declarations: [
     ToolbarComponent,
-    FooterComponent
+    FooterComponent, 
+    ListComponent, 
+    DetailComponent, 
+    EditComponent
   ],
   imports: [
     CommonModule,
@@ -17,7 +23,10 @@ import { ReactiveFormsModule } from '@angular/forms';
   ],
   exports: [
     ToolbarComponent,
-    FooterComponent
+    FooterComponent, 
+    ListComponent, 
+    DetailComponent, 
+    EditComponent
   ]
 })
 export class SharedModule { }

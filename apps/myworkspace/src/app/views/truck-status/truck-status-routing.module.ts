@@ -7,7 +7,7 @@ import { StatusEditComponent } from './status-edit/status-edit.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/index'
+    redirectTo: '/status/index'
   },
   {
     path: 'index',

@@ -1,4 +1,4 @@
-<myworkspace-toolbar></myworkspace-toolbar>
+<myworkspace-toolbar [title]="currentPageTitle$ | async"></myworkspace-toolbar>
 <div style="text-align:center">
   <h1>Welcome to testing!</h1>
   <img
@@ -6,5 +6,4 @@
     src="https://raw.githubusercontent.com/nrwl/nx/master/nx-logo.png"
   />
 </div>
-<div>Message: {{ hello$ | async | json }}</div>
-<myworkspace-footer></myworkspace-footer>
+<router-outlet></router-outlet>

@@ -1,0 +1,31 @@
+<div class="item-details-container" *ngIf="item">
+
+    <div class="card">
+      <div class="card-header">
+        Contact
+      </div>
+      <div class="card-body">
+        <ng-container *ngIf="!detailInfo">
+            <p>Name: <span class="badge badge-primary">{{item.name}}</span></p>
+            <p>Created Date:  <span class="badge badge-primary">{{item.createdDate}}</span></p>
+        </ng-container>
+
+        <ng-container *ngIf="detailInfo">
+          <ng-container *ngFor="let detail of detailInfo">
+              <p>{{ detail.name }}: <span class="badge badge-primary">{{item[detail.propName]}}</span></p>
+          </ng-container>
+            
+        </ng-container>
+      </div>
+      <div class="card-footer text-muted">
+        <span class="float-md-right ">
+          <button (click)="edit.emit(item)" class="btn btn-sm btn-outline-primary"> EDIT</button>
+          <button (click)="remove.emit(item)" class="btn btn-sm btn-outline-danger"> DELETE</button>
+        </span>
+  
+      </div>
+    </div>
+  
+  </div>
+  
+  

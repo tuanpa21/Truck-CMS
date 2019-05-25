@@ -7,7 +7,7 @@ import { CargoEditComponent } from './cargo-edit/cargo-edit.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/index'
+    redirectTo: '/cargo-type/index'
   },
   {
     path: 'index',

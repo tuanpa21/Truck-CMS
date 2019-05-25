@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 
 
 const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: '/trucks'
+    redirectTo: 'trucks'
   },
   {
     path: 'trucks', loadChildren: 'apps/myworkspace/src/app/views/truck/truck.module#TruckModule',

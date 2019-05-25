@@ -1,0 +1,39 @@
+<table *ngIf="lists; else loading" class="table table-hover table-responsive-md">
+  <thead class="header">
+  <tr>
+    <th>#</th>
+    <th *ngFor="let column of tableConfig">{{ column.headerName }}</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr class="item-row" *ngFor="let c of lists; let i = index; trackBy: itemsTrackByFn">
+    <th scope="row">{{ i + 1}}</th>
+    <td *ngFor="let column of tableConfig">{{ c[column.propName]}}</td>
+    <td>
+
+      <span class="float-right">
+
+        <button (click)="showDetails(c)" class="btn btn-outline-primary mb-1 btn-sm">
+          DETAILS
+        </button>
+
+        <button (click)="editItem(c)" class="btn btn-outline-primary mb-1 btn-sm">
+          EDIT
+        </button>
+
+        <button (click)="deleteItem(c)" class="btn btn-outline-danger mb-1 btn-sm">
+          DELETE
+        </button>
+
+      </span>
+
+    </td>
+  </tr>
+
+  </tbody>
+</table>
+
+<ng-template #loading>
+  <span>loading contacts...</span>
+</ng-template>

@@ -1,13 +1,15 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { TruckIndexComponent } from './truck-index/truck-index.component';
+import { RouterModule, Routes } from '@angular/router';
+
 import { TruckDetailComponent } from './truck-detail/truck-detail.component';
 import { TruckEditComponent } from './truck-edit/truck-edit.component';
+import { TruckIndexComponent } from './truck-index/truck-index.component';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/index'
+    redirectTo: 'index',
+    pathMatch: 'full'
   },
   {
     path: 'index',
@@ -15,7 +17,7 @@ const routes: Routes = [
     data: { title: 'Trucks Index' }
   },
   {
-    path: 'detail',
+    path: 'detail/:id',
     component: TruckDetailComponent,
     data: { title: 'Truck Detail' }
   },
