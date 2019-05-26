@@ -1,3 +1,5 @@
+import { Validators } from '@angular/forms';
+
 import { FormConfig, INPUT_TYPE } from '../../../core/components/edit/edit.component';
 import { TableConfig } from '../../../core/components/list/list.component';
 
@@ -6,7 +8,7 @@ export const TRUCK_CONFIG: Array<TableConfig> = [
     {
       name: 'Truck Plate',
       headerName: 'Truck Plate',
-      propName: 'truckPlate'
+      propName: 'truckPlate',
     },
     {
       name: 'Cargo Type',
@@ -60,19 +62,21 @@ export const FORM_TRUCK: FormConfig[] = [
   {
     label: 'Truck Plate',
     controlName: 'truckPlate',
-    value: '',
+    validator: [Validators.required],
   },
   {
     label: 'Cargo Type',
     controlName: 'cargoType',
     type: INPUT_TYPE.AUTOCOMPLETE,
-    options: []
+    options: [],
+    validator: [Validators.required]
   },
   {
     label: 'Driver',
     controlName: 'driver',
     type: INPUT_TYPE.AUTOCOMPLETE,
-    options: []
+    options: [],
+    validator: [Validators.required]
   },
   {
     label: 'Truck Type',
@@ -83,6 +87,7 @@ export const FORM_TRUCK: FormConfig[] = [
   {
     label: 'Price',
     controlName: 'price',
+    validator: [Validators.required]
   },
   {
     label: 'Dimension Long',
@@ -98,7 +103,9 @@ export const FORM_TRUCK: FormConfig[] = [
   },
   {
     label: 'Parking Address',
-    controlName: 'parkingAddress'
+    controlName: 'parkingAddress',
+    validator: [Validators.maxLength(500)],
+    maxLength: 500
   },
   {
     label: 'Production Year',
@@ -109,10 +116,13 @@ export const FORM_TRUCK: FormConfig[] = [
     label: 'Status',
     controlName: 'status',
     type: INPUT_TYPE.AUTOCOMPLETE,
-    options: []
+    options: [],
+    validator: [Validators.required]
   },
   {
     label: 'Description',
-    controlName: 'desription'
+    controlName: 'desription',
+    validator: [Validators.maxLength(200)],
+    maxLength: 200
   },
 ];

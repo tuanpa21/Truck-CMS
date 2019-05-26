@@ -3,6 +3,14 @@
     <div class="form-group" *ngFor="let c of formConfig">
       <label>{{ c.label }}:</label>
       <input-loader [type]="c.type" [control]="form.get(c.controlName)"></input-loader>
+      <!-- validate -->
+      <div *ngIf="isError(form.get(c.controlName))" class="error-msg">
+        {{getErrorMsg(form.get(c.controlName))}}
+      </div>
+      <!-- TODO text-counter -->
+      <div *ngIf="c.maxLength" class="text-counter">
+        <label>Text counter: {{form.get(c.controlName).value.length}}/{{c.maxLength}}</label>
+      </div>
     </div>
   
   

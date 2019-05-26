@@ -1,3 +1,8 @@
-<p>
-  cargo-index works!
-</p>
+<h1> Cargo Type List</h1>
+
+<myworkspace-list [lists]="cargo$ | async"
+                  [tableConfig]="tableConfig"
+                  (show)="detailCargo($event)"
+                  (remove)="deleteCargo($event)"
+                  (edit)="editCargo($event)"
+></myworkspace-list>

@@ -16,19 +16,19 @@ export interface Truck {
   year: number;
   statusId: number;
   desription: string;
-  createdDate: string;
+  createdDate?: string;
 }
 
 export interface CargoType {
   id: number;
   name: string;
-  createdDate: string;
+  createdDate?: string;
 }
 
 export interface Driver {
   id: number;
   name: string;
-  createDate: string;
+  createdDate?: string;
   age: number;
   email: string;
 }

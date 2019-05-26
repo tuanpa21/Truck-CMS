@@ -3,7 +3,7 @@ import { Truck } from '@myworkspace/api-interface';
 import { Observable, of } from 'rxjs';
 
 import { FormConfig } from '../../../core/components/edit/edit.component';
-import { MOCK_TRUCK } from '../../../core/mock-data/mock-truck';
+import { MOCK_TRUCK } from '../../../core/mock-data/mock';
 import { FORM_TRUCK } from '../config/truck-config';
 
 @Component({

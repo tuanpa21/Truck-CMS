@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Truck } from '@myworkspace/api-interface';
 import { Observable, of } from 'rxjs';
 
-import { MOCK_TRUCK } from '../../../core/mock-data/mock-truck';
+import { MOCK_TRUCK } from '../../../core/mock-data/mock';
 import { TRUCK_CONFIG } from '../config/truck-config';
 
 @Component({

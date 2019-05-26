@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, ValidatorFn } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidatorFn } from '@angular/forms';
+
+import { touchAllInput, VALIDATE_MSG } from '../../ultilities/form';
 
 @Component({
   selector: 'myworkspace-edit',
@@ -48,12 +50,24 @@ export class EditComponent implements OnInit {
   }
 
   submit() {
+    touchAllInput(this.form);
     if (this.form.valid) {
       this.save.emit(this.form.value);
     }
 
   }
 
+  isError(control: AbstractControl): boolean {
+    return control.invalid && (control.touched || control.dirty);
+  }
+
+  getErrorMsg(control: AbstractControl) {
+    const error = Object.keys(control.errors)[0];
+    if (!error) {
+      return;
+    }
+    return VALIDATE_MSG[error];
+  }
 }
 
 export interface FormConfig {
@@ -63,6 +77,7 @@ export interface FormConfig {
   value?: any;
   type?: string;
   options?: Array<any>;
+  maxLength?: number | string;
 }
 
 export const INPUT_TYPE = {

@@ -1,8 +1,10 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { CargoIndexComponent } from './cargo-index/cargo-index.component';
+import { RouterModule, Routes } from '@angular/router';
+
 import { CargoDetailComponent } from './cargo-detail/cargo-detail.component';
 import { CargoEditComponent } from './cargo-edit/cargo-edit.component';
+import { CargoIndexComponent } from './cargo-index/cargo-index.component';
+import { CargoNewComponent } from './cargo-new/cargo-new.component';
 
 const routes: Routes = [
   {
@@ -15,13 +17,13 @@ const routes: Routes = [
     data: { title: 'Cargo Type Index' }
   },
   {
-    path: 'detail',
+    path: 'detail/:id',
     component: CargoDetailComponent,
     data: { title: 'Cargo Type Detail' }
   },
   {
     path: 'new',
-    component: CargoEditComponent,
+    component: CargoNewComponent,
     data: { title: 'New Cargo Type' }
   },  
   {

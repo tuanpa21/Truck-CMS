@@ -1,9 +1,12 @@
-import { Component, OnInit } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { Message } from "@myworkspace/api-interface";
-import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
-import { filter, map } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { Message } from '@myworkspace/api-interface';
 import { Observable } from 'rxjs';
+import { filter, map } from 'rxjs/operators';
+
+import { MOCK_CARGO, MOCK_DRIVER, MOCK_STATUS, MOCK_TRUCK, MOCK_TYPE } from './core/mock-data/mock';
+import { Cargo, Drivers, Trucks, TruckStatus, TypeTruck } from './mock/mock-data';
 
 @Component({
   selector: "myworkspace-root",
@@ -36,5 +39,12 @@ export class AppComponent implements OnInit {
             return null;
           })
         );
+    
+        // Mock data
+        Trucks.list.push(...MOCK_TRUCK);
+        Cargo.list.push(...MOCK_CARGO);
+        Drivers.list.push(...MOCK_DRIVER);
+        TruckStatus.list.push(...MOCK_STATUS);
+        TypeTruck.list.push(...MOCK_TYPE);
   }
 }

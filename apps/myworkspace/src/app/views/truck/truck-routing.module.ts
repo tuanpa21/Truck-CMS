@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { TruckDetailComponent } from './truck-detail/truck-detail.component';
 import { TruckEditComponent } from './truck-edit/truck-edit.component';
 import { TruckIndexComponent } from './truck-index/truck-index.component';
+import { TruckNewComponent } from './truck-new/truck-new.component';
 
 const routes: Routes = [
   {
@@ -23,7 +24,7 @@ const routes: Routes = [
   },
   {
     path: 'new',
-    component: TruckEditComponent,
+    component: TruckNewComponent,
     data: { title: 'New Truck' }
   },  
   {

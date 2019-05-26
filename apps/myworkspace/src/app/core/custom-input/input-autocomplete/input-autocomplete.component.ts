@@ -36,6 +36,8 @@ export class InputAutocompleteComponent implements OnInit {
   onBlur() {
     if (!this.control.value) {
       this.autoCtrl.setValue('');
+    } else {
+      this.control.setValue(this.options.find(it => it.name == this.autoCtrl.value).id);
     }
   }
 }
