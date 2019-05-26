@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Truck } from '@myworkspace/api-interface';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
-import { DetailInfo } from '../../../core/components/detail/detail.component';
+import { MOCK_TRUCK } from '../../../core/mock-data/mock-truck';
+import { TRUCK_CONFIG } from '../config/truck-config';
 
 @Component({
   selector: 'myworkspace-truck-detail',
@@ -12,33 +13,26 @@ import { DetailInfo } from '../../../core/components/detail/detail.component';
 })
 export class TruckDetailComponent implements OnInit {
   truckDetail$: Observable<Truck>;
-  detailInfo: DetailInfo[];
+  detailInfo: any[];
   constructor(
     private router: Router,
     private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
-    this.detailInfo = DETAIL_INFO;
+    this.detailInfo = TRUCK_CONFIG;
+    this.truckDetail$ = of(MOCK_TRUCK[0]);
   }
 
   editTruck(event) {
-    this.router.navigate(['../edit', event.id], { relativeTo: this.route });
+    this.router.navigate(['../../', 'edit', event.id], { relativeTo: this.route });
   }
 
   deleteTruck(event) {
     const r = confirm('Are you sure?');
-    console.log(r);
     if (r) {
       
     }
     // Call API Delete Truck
   }
 }
-
-const DETAIL_INFO: DetailInfo[] = [
-  {
-    name: '',
-    propName: ''
-  },
-];

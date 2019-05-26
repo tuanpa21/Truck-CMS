@@ -1,0 +1,8 @@
+<input list="browsers" name="browser"class="form-control"  [formControl]="autoCtrl" 
+    (change)="onUpdate($event)" (blur)="onBlur()">
+
+  <datalist id="browsers">
+    <ng-container *ngFor="let option of optionsList">
+        <option [value]="option">
+    </ng-container>
+  </datalist>

@@ -4,6 +4,8 @@ import { Truck } from '@myworkspace/api-interface';
 import { Observable, of } from 'rxjs';
 
 import { TableConfig } from '../../../core/components/list/list.component';
+import { MOCK_TRUCK } from '../../../core/mock-data/mock-truck';
+import { TRUCK_CONFIG } from '../config/truck-config';
 
 @Component({
   selector: 'myworkspace-truck-index',
@@ -19,23 +21,8 @@ export class TruckIndexComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.tableConfig = TABLE_CONFIG;
-    this.trucks$ = of([{
-      id: 0,
-      truckPlate: 'abc',
-      cargoTypeId: 0,
-      driverId: 0,  
-      truckTypeId: 0,
-      price: '1000',
-      dimensionLong: 0,
-      dimensionWidth: 0,
-      dimensionHeight: 0,
-      parkingAddress: 'Hà Nội',
-      year: 2019,
-      statusId: 0,
-      desription: 'Testing',
-      createdDate: ''
-    }]);
+    this.tableConfig = TRUCK_CONFIG;
+    this.trucks$ = of(MOCK_TRUCK);
   }
 
   detailTruck(event) {
@@ -44,7 +31,6 @@ export class TruckIndexComponent implements OnInit {
 
   deleteTruck(event) {
     const r = confirm('Are you sure?');
-    console.log(r);
     if (r) {
       
     }
@@ -55,46 +41,3 @@ export class TruckIndexComponent implements OnInit {
     this.router.navigate(['../edit', event.id], { relativeTo: this.route });
   }
 }
-
-const TABLE_CONFIG: Array<TableConfig> = [
-  {
-    headerName: 'Truck Plate',
-    propName: 'truckPlate'
-  },
-  {
-    headerName: 'Cargo Type',
-    propName: 'cargoType'
-  },
-  {
-    headerName: 'Driver',
-    propName: 'driver'
-  },
-  {
-    headerName: 'Truck Type',
-    propName: 'truckType'
-  },
-  {
-    headerName: 'Price',
-    propName: 'price'
-  },
-  {
-    headerName: 'Dimension (L-H-W)',
-    propName: 'dimension'
-  },
-  {
-    headerName: 'Parking Address',
-    propName: 'parkingAddress'
-  },
-  {
-    headerName: 'Production Year',
-    propName: 'year'
-  },
-  {
-    headerName: 'Status',
-    propName: 'status'
-  },
-  {
-    headerName: 'Description',
-    propName: 'desription'
-  },
-]

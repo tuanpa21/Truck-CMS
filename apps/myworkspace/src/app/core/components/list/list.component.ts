@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'myworkspace-list',
@@ -34,6 +34,7 @@ export class ListComponent implements OnInit {
 }
 
 export interface TableConfig {
+  name?: string;
   headerName: string;
   propName: string;
 }

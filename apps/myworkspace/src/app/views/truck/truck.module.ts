@@ -6,9 +6,10 @@ import { TruckIndexComponent } from './truck-index/truck-index.component';
 import { TruckEditComponent } from './truck-edit/truck-edit.component';
 import { TruckDetailComponent } from './truck-detail/truck-detail.component';
 import { SharedModule } from '../../core/module/shared.module';
+import { TruckNewComponent } from './truck-new/truck-new.component';
 
 @NgModule({
-  declarations: [TruckIndexComponent, TruckEditComponent, TruckDetailComponent],
+  declarations: [TruckIndexComponent, TruckEditComponent, TruckDetailComponent, TruckNewComponent],
   imports: [
     CommonModule,
     TruckRoutingModule,

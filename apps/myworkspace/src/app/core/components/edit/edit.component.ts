@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, ValidatorFn } from '@angular/forms';
 
 @Component({
   selector: 'myworkspace-edit',
@@ -7,25 +7,40 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./edit.component.scss']
 })
 export class EditComponent implements OnInit {
+  _formConfig: FormConfig[];
+  @Input() 
+  set formConfig(config: FormConfig[]) {
+    config.map(c => {
+      if (!c.validator) {
+        c.validator = [];
+      }
+      if (!c.hasOwnProperty('value')) {
+        c.value = ''
+      }
+      if (!c.hasOwnProperty('type')) {
+        c.type = 'text'
+      }
+    });
+    this._formConfig = config;
+    this.form = new FormGroup({});
+    for (const c of config) {
+      this.form.addControl(c.controlName, new FormControl(c.value, c.validator));
+    }
+  }
+  get formConfig() {
+    return this._formConfig;
+  }
 
-  @Input() contact: any = {
-    id: undefined,
-    name: '',
-    email: '',
-    phone: ''
-  };
+  @Input()
+  set formData(data) {
+    this.form.patchValue(data);
+  }
 
   @Output() save = new EventEmitter<any>();
 
   form: FormGroup;
 
-  constructor(public formBuilder: FormBuilder) {
-    this.form = this.formBuilder.group({
-      id: [this.contact.id],
-      name: [this.contact.name, Validators.required],
-      email: [this.contact.email, Validators.required],
-      phone: [this.contact.phone]
-    });
+  constructor(public fb: FormBuilder) {
   }
 
   ngOnInit() {
@@ -39,4 +54,19 @@ export class EditComponent implements OnInit {
 
   }
 
+}
+
+export interface FormConfig {
+  label: string;
+  controlName: string;
+  validator?: ValidatorFn[];
+  value?: any;
+  type?: string;
+  options?: Array<any>;
+}
+
+export const INPUT_TYPE = {
+  TEXT: 'text',
+  AUTOCOMPLETE: 'autocomplete',
+  NUMBER: 'number'
 }
