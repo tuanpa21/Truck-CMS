@@ -1,10 +1,21 @@
+import { Injectable } from '@angular/core';
 import { AbstractControl, FormArray, FormControl, FormGroup } from '@angular/forms';
 
-export function isError(control: AbstractControl): boolean {
+@Injectable({
+  providedIn: 'root'
+})
+export class HelperService {
+  VALIDATE_MSG = {
+    required: 'This field is required',
+    maxlength: 'This field is too long',
+  };
+  constructor() { }
+  
+  isError(control: AbstractControl): boolean {
     return control.invalid && (control.touched || control.dirty);
-}
+  }
 
-export function touchAllInput(form: AbstractControl | FormControl | FormGroup | FormArray, loop: boolean = false) {
+  touchAllInput(form: AbstractControl | FormControl | FormGroup | FormArray, loop: boolean = false) {
     if (form instanceof FormControl) {
       form.markAsDirty({onlySelf: true});
       form.markAsTouched({onlySelf: true});
@@ -33,7 +44,11 @@ export function touchAllInput(form: AbstractControl | FormControl | FormGroup | 
     }
   }
 
-export const VALIDATE_MSG = {
-  required: 'This field is required',
-  maxlength: 'This field is too long',
-};
+  getErrorMsg(control: AbstractControl) {
+    const error = Object.keys(control.errors)[0];
+    if (!error) {
+      return;
+    }
+    return this.VALIDATE_MSG[error];
+  }
+}

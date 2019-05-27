@@ -9,6 +9,7 @@ import { FooterComponent } from '../components/footer/footer.component';
 import { ListComponent } from '../components/list/list.component';
 import { ToolbarComponent } from '../components/toolbar/toolbar.component';
 import { CustomInputModule } from '../custom-input/custom-input.module';
+import { HelperService } from '../services/helper.service';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,9 @@ import { CustomInputModule } from '../custom-input/custom-input.module';
     ListComponent, 
     DetailComponent, 
     EditComponent
+  ],
+  providers: [
+    HelperService
   ]
 })
 export class SharedModule { }

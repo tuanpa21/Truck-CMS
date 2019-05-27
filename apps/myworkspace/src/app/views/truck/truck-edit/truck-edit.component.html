@@ -4,7 +4,7 @@
       Edit Truck
     </div>
     <div class="card-body">
-      <myworkspace-edit [formData]="truck$ | async" 
+      <myworkspace-edit [formData]="truck" 
                         [formConfig]="formConfig"
                         (save)="submitted($event)"> 
       </myworkspace-edit>

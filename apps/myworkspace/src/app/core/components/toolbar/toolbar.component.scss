@@ -20,3 +20,14 @@
 .nav-item.active {
   background: rgba(255, 255, 255, 0.15);
 }
+
+.select-dropdown {
+  border: 0;
+  background: #007bff;
+  color: rgba(255, 255, 255, 0.75);
+  
+  option {
+    background: rgba(255, 255, 255, 0.15);
+    color: rgba(255, 255, 255, 0.75);
+  }
+}

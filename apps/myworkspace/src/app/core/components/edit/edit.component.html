@@ -1,11 +1,11 @@
-<form (submit)="submit()"  class="form" [formGroup]="form">
+<form (ngSubmit)="submit()"  class="form" [formGroup]="form">
 
     <div class="form-group" *ngFor="let c of formConfig">
       <label>{{ c.label }}:</label>
-      <input-loader [type]="c.type" [control]="form.get(c.controlName)"></input-loader>
+      <input-loader [type]="c.type" [control]="form.get(c.controlName)" [options]="c.options"></input-loader>
       <!-- validate -->
-      <div *ngIf="isError(form.get(c.controlName))" class="error-msg">
-        {{getErrorMsg(form.get(c.controlName))}}
+      <div *ngIf="helper.isError(form.get(c.controlName))" class="error-msg">
+        {{ helper.getErrorMsg(form.get(c.controlName)) }}
       </div>
       <!-- TODO text-counter -->
       <div *ngIf="c.maxLength" class="text-counter">
@@ -17,7 +17,6 @@
     <div class="form-group">
       <button
               type="submit"
-              [disabled]="!form.valid"
               class="btn btn-success float-right">
         Submit
       </button>

@@ -12,10 +12,14 @@ export class ListComponent implements OnInit {
   @Output() show = new EventEmitter<any>();
   @Output() remove = new EventEmitter<any>();
 
+  sortColumn: string;
+  sortDirection: string = 'ASC';
+
   itemsTrackByFn = (index: number, item: any) => item.id;
   constructor() { }
 
   ngOnInit() {
+    this.sortColumn = this.tableConfig[0].headerName;
   }
 
   showDetails(item) {
@@ -29,6 +33,8 @@ export class ListComponent implements OnInit {
   deleteItem(item) {
     this.remove.emit(item);
   }
+
+  onSortColumn(columnName) {}
 }
 
 export interface TableConfig {

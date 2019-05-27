@@ -2,6 +2,7 @@ import { Validators } from '@angular/forms';
 
 import { FormConfig, INPUT_TYPE } from '../../../core/components/edit/edit.component';
 import { TableConfig } from '../../../core/components/list/list.component';
+import { Cargo, Drivers, TruckStatus, TypeTruck } from '../../../mock/mock-data';
 
 
 export const TRUCK_CONFIG: Array<TableConfig> = [
@@ -68,21 +69,21 @@ export const FORM_TRUCK: FormConfig[] = [
     label: 'Cargo Type',
     controlName: 'cargoType',
     type: INPUT_TYPE.AUTOCOMPLETE,
-    options: [],
+    options: Cargo.list,
     validator: [Validators.required]
   },
   {
     label: 'Driver',
     controlName: 'driver',
     type: INPUT_TYPE.AUTOCOMPLETE,
-    options: [],
+    options: Drivers.list,
     validator: [Validators.required]
   },
   {
     label: 'Truck Type',
     controlName: 'truckType',
     type: INPUT_TYPE.AUTOCOMPLETE,
-    options: []
+    options: TypeTruck.list
   },
   {
     label: 'Price',
@@ -116,7 +117,7 @@ export const FORM_TRUCK: FormConfig[] = [
     label: 'Status',
     controlName: 'status',
     type: INPUT_TYPE.AUTOCOMPLETE,
-    options: [],
+    options: TruckStatus.list,
     validator: [Validators.required]
   },
   {

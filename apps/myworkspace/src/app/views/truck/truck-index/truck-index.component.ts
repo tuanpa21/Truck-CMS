@@ -4,7 +4,7 @@ import { Truck } from '@myworkspace/api-interface';
 import { Observable, of } from 'rxjs';
 
 import { TableConfig } from '../../../core/components/list/list.component';
-import { MOCK_TRUCK } from '../../../core/mock-data/mock';
+import { Trucks } from '../../../mock/mock-data';
 import { TRUCK_CONFIG } from '../config/truck-config';
 
 @Component({
@@ -22,7 +22,7 @@ export class TruckIndexComponent implements OnInit {
 
   ngOnInit() {
     this.tableConfig = TRUCK_CONFIG;
-    this.trucks$ = of(MOCK_TRUCK);
+    this.trucks$ = of(Trucks.list);
   }
 
   detailTruck(event) {

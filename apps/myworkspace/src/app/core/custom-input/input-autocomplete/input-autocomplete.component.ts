@@ -8,36 +8,10 @@ import { FormControl } from '@angular/forms';
 })
 export class InputAutocompleteComponent implements OnInit {
   control: FormControl;
-  _options = [];
-  set options(options) {
-    this._options = options;
-    this.optionsList = options.map(it => `${it.name}`);
-  }
-  get options() {
-    return this._options;
-  }
-  optionsList = [];
-  autoCtrl = new FormControl();
+  options = [];
 
   constructor() { }
 
   ngOnInit() {
-  }
-
-  onUpdate(event) {
-    const result = event.target.value;
-    if (this.optionsList.indexOf(result) < 0) {
-      this.autoCtrl.setValue('');
-      return;
-    }
-    this.control.setValue(this.options.find(it => it.name == this.autoCtrl.value).id);
-  }
-
-  onBlur() {
-    if (!this.control.value) {
-      this.autoCtrl.setValue('');
-    } else {
-      this.control.setValue(this.options.find(it => it.name == this.autoCtrl.value).id);
-    }
   }
 }

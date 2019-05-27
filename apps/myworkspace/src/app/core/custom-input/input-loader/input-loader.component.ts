@@ -34,7 +34,7 @@ export class InputLoaderComponent implements OnInit, OnDestroy {
     this.input.clear();
     const component = CONFIG_INPUT.find(it => it.type === this.type).component;
     const componentFatory = this.factory.resolveComponentFactory(component);
-
+    
     const componentRef = this.input.createComponent(componentFatory);
     (<any>componentRef.instance).options = this.options;
     (<any>componentRef.instance).control = this.control;

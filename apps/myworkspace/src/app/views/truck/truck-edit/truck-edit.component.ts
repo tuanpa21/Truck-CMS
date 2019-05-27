@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Truck } from '@myworkspace/api-interface';
-import { Observable, of } from 'rxjs';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 import { FormConfig } from '../../../core/components/edit/edit.component';
-import { MOCK_TRUCK } from '../../../core/mock-data/mock';
+import { Trucks } from '../../../mock/mock-data';
 import { FORM_TRUCK } from '../config/truck-config';
 
 @Component({
@@ -11,18 +13,36 @@ import { FORM_TRUCK } from '../config/truck-config';
   templateUrl: './truck-edit.component.html',
   styleUrls: ['./truck-edit.component.scss']
 })
-export class TruckEditComponent implements OnInit {
-  truck$: Observable<Truck>;
+export class TruckEditComponent implements OnInit, OnDestroy {
+  truck: Truck;
   formConfig: FormConfig[];
-  constructor() { }
+
+  currentIndex: number | string;
+  destroy$: Subject<boolean> = new Subject<boolean>();
+
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute
+  ) { }
 
   ngOnInit() {
     this.formConfig = FORM_TRUCK;
-    this.truck$ = of(MOCK_TRUCK[0]);
+    this.route.params.pipe(takeUntil(this.destroy$)).subscribe(param => {
+      this.currentIndex = Trucks.list.findIndex(it => it.id == param.id);
+      this.truck = Trucks.list[this.currentIndex];
+    });
+  }
+
+  ngOnDestroy() {
+    this.destroy$.next(true);
+    this.destroy$.unsubscribe();
   }
 
   submitted(event) {
     // Call API update
+    Trucks.list[this.currentIndex] = event;
+    alert('Edit truck success');
+    this.router.navigate(['../../index'], { relativeTo: this.route });
   }
 }
 
