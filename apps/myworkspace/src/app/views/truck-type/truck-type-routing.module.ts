@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { StatusDetailComponent } from '../truck-status/status-detail/status-detail.component';
-import { StatusEditComponent } from '../truck-status/status-edit/status-edit.component';
-import { StatusIndexComponent } from '../truck-status/status-index/status-index.component';
+import { TypeDetailComponent } from './type-detail/type-detail.component';
+import { TypeEditComponent } from './type-edit/type-edit.component';
+import { TypeIndexComponent } from './type-index/type-index.component';
+import { TypeNewComponent } from './type-new/type-new.component';
 
 const routes: Routes = [
   {
@@ -12,23 +13,23 @@ const routes: Routes = [
   },
   {
     path: 'index',
-    component: StatusIndexComponent,
-    data: { title: 'Status Index' }
+    component: TypeIndexComponent,
+    data: { title: 'Truck Type Index' }
   },
   {
     path: 'detail',
-    component: StatusDetailComponent,
-    data: { title: 'Status Detail' }
+    component: TypeDetailComponent,
+    data: { title: 'Truck Type Detail' }
   },
   {
     path: 'new',
-    component: StatusEditComponent,
-    data: { title: 'New Status' }
+    component: TypeNewComponent,
+    data: { title: 'New Truck Type' }
   },  
   {
     path: 'edit/:id',
-    component: StatusEditComponent,
-    data: { title: 'Edit Status' }
+    component: TypeEditComponent,
+    data: { title: 'Edit Truck Type' }
   },
 ];
 
@@ -36,4 +37,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class TruckStatusRoutingModule { }
+export class TruckTypeRoutingModule { }

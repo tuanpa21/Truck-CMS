@@ -9,6 +9,7 @@ import { FooterComponent } from '../components/footer/footer.component';
 import { ListComponent } from '../components/list/list.component';
 import { ToolbarComponent } from '../components/toolbar/toolbar.component';
 import { CustomInputModule } from '../custom-input/custom-input.module';
+import { PipeModule } from '../pipe/pipe.module';
 import { HelperService } from '../services/helper.service';
 
 @NgModule({
@@ -23,14 +24,16 @@ import { HelperService } from '../services/helper.service';
     CommonModule,
     ReactiveFormsModule,
     RouterModule,
-    CustomInputModule
+    CustomInputModule,
+    PipeModule
   ],
   exports: [
     ToolbarComponent,
     FooterComponent, 
     ListComponent, 
     DetailComponent, 
-    EditComponent
+    EditComponent,
+    PipeModule
   ],
   providers: [
     HelperService

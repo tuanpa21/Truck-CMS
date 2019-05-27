@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'myworkspace-list',
@@ -12,6 +13,7 @@ export class ListComponent implements OnInit {
   @Output() show = new EventEmitter<any>();
   @Output() remove = new EventEmitter<any>();
 
+  searchInput = new FormControl();
   sortColumn: string;
   sortDirection: string = 'ASC';
 
