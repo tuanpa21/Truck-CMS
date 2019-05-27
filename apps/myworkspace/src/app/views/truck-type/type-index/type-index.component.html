@@ -1,3 +1,8 @@
-<p>
-  type-index works!
-</p>
+<h1> Truck Type List</h1>
+
+<myworkspace-list [lists]="type$ | async"
+                  [tableConfig]="tableConfig"
+                  (show)="detailType($event)"
+                  (remove)="deleteType($event)"
+                  (edit)="editType($event)"
+></myworkspace-list>

@@ -6,8 +6,7 @@
   <thead class="header">
   <tr>
     <th>#</th>
-    <th style="cursor: pointer;" *ngFor="let column of tableConfig" (click)="onSortColumn(column.headerName)">{{ column.headerName }} 
-    </th>
+    <th style="cursor: pointer;" *ngFor="let column of tableConfig">{{ column.headerName }} </th>
     <th></th>
   </tr>
   </thead>
@@ -42,5 +41,5 @@
 
 
 <ng-template #loading>
-  <span>loading contacts...</span>
+  <span>loading data...</span>
 </ng-template>

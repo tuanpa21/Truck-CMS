@@ -6,15 +6,20 @@ export interface Truck {
   id: number;
   truckPlate: string;
   cargoTypeId: number;
+  cargoTypeName?: string;
   driverId: number;
+  driverName?: string;
   truckTypeId: number;
+  truckTypeName?: string;
   price: number | string;
   dimensionLong: number;
   dimensionWidth: number;
   dimensionHeight: number;
+  dimension?: string;
   parkingAddress: string;
   year: number;
   statusId: number;
+  statusName?: string
   desription: string;
   createdDate?: string;
 }

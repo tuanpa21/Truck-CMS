@@ -14,17 +14,17 @@ export const TRUCK_CONFIG: Array<TableConfig> = [
     {
       name: 'Cargo Type',
       headerName: 'Cargo Type',
-      propName: 'cargoType'
+      propName: 'cargoTypeName'
     },
     {
       name: 'Driver',
       headerName: 'Driver',
-      propName: 'driver'
+      propName: 'driverName'
     },
     {
       name: 'Truck Type',
       headerName: 'Truck Type',
-      propName: 'truckType'
+      propName: 'truckTypeName'
     },
     {
       name: 'Price',
@@ -50,7 +50,7 @@ export const TRUCK_CONFIG: Array<TableConfig> = [
 
       name: 'Status',
       headerName: 'Status',
-      propName: 'status'
+      propName: 'statusName'
     },
     {
       name: 'Description',
@@ -67,21 +67,21 @@ export const FORM_TRUCK: FormConfig[] = [
   },
   {
     label: 'Cargo Type',
-    controlName: 'cargoType',
+    controlName: 'cargoTypeId',
     type: INPUT_TYPE.AUTOCOMPLETE,
     options: Cargo.list,
     validator: [Validators.required]
   },
   {
     label: 'Driver',
-    controlName: 'driver',
+    controlName: 'driverId',
     type: INPUT_TYPE.AUTOCOMPLETE,
     options: Drivers.list,
     validator: [Validators.required]
   },
   {
     label: 'Truck Type',
-    controlName: 'truckType',
+    controlName: 'truckTypeId',
     type: INPUT_TYPE.AUTOCOMPLETE,
     options: TypeTruck.list
   },
@@ -115,7 +115,7 @@ export const FORM_TRUCK: FormConfig[] = [
   {
 
     label: 'Status',
-    controlName: 'status',
+    controlName: 'statusId',
     type: INPUT_TYPE.AUTOCOMPLETE,
     options: TruckStatus.list,
     validator: [Validators.required]

@@ -1,3 +1,8 @@
-<p>
-  status-index works!
-</p>
+<h1> Truck Status List</h1>
+
+<myworkspace-list [lists]="status$ | async"
+                  [tableConfig]="tableConfig"
+                  (show)="detailStatus($event)"
+                  (remove)="deleteStatus($event)"
+                  (edit)="editStatus($event)"
+></myworkspace-list>

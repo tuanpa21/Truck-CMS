@@ -1,3 +1,6 @@
-<p>
-  status-detail works!
-</p>
+<myworkspace-detail
+        [item]="truckStatus$ | async"
+        [detailInfo]="detailInfo"
+        (edit)="editTruckStatus($event)"
+        (remove)="deleteTruckStatus($event)"
+></myworkspace-detail>

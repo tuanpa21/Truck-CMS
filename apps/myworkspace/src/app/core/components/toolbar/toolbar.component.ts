@@ -43,7 +43,7 @@ export class ToolbarComponent implements OnInit {
         filter(ev => ev instanceof NavigationEnd), 
         take(1)).subscribe((event: NavigationEnd) => {
       const currentMenu = this.menuOptions.find(it => event.url.indexOf(it.value) > -1);
-      this.selectMenu.setValue(currentMenu.value);
+      if (currentMenu) { this.selectMenu.setValue(currentMenu.value); }
     });
 
     this.selectMenu.valueChanges.subscribe(menu => {

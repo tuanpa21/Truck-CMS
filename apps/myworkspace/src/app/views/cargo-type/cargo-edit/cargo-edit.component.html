@@ -1,3 +1,14 @@
-<p>
-  cargo-edit works!
-</p>
+<div class="container">
+    <div class="card">
+      <div class="card-header">
+        Edit Cargo Type
+      </div>
+      <div class="card-body">
+        <myworkspace-edit [formData]="cargo" 
+                          [formConfig]="formConfig"
+                          (save)="submitted($event)"> 
+        </myworkspace-edit>
+    
+      </div>
+    </div>
+  </div>

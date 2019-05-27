@@ -1,3 +1,8 @@
-<p>
-  driver-index works!
-</p>
+<h1> Driver List</h1>
+
+<myworkspace-list [lists]="driver$ | async"
+                  [tableConfig]="tableConfig"
+                  (show)="detailDriver($event)"
+                  (remove)="deleteDriver($event)"
+                  (edit)="editDriver($event)"
+></myworkspace-list>

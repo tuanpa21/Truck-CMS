@@ -51,4 +51,8 @@ export class HelperService {
     }
     return this.VALIDATE_MSG[error];
   }
+
+  getValueFromId(value, array): string {
+    return array.find(it => it.id === value).name;
+  }
 }

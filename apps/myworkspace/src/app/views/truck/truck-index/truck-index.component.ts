@@ -2,9 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Truck } from '@myworkspace/api-interface';
 import { Observable, of } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { TableConfig } from '../../../core/components/list/list.component';
-import { Trucks } from '../../../mock/mock-data';
+import { HelperService } from '../../../core/services/helper.service';
+import { Cargo, Drivers, Trucks, TruckStatus, TypeTruck } from '../../../mock/mock-data';
 import { TRUCK_CONFIG } from '../config/truck-config';
 
 @Component({
@@ -17,12 +19,13 @@ export class TruckIndexComponent implements OnInit {
   trucks$: Observable<Truck[]>;
   constructor(
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private helper: HelperService
   ) { }
 
   ngOnInit() {
     this.tableConfig = TRUCK_CONFIG;
-    this.trucks$ = of(Trucks.list);
+    this.getList()
   }
 
   detailTruck(event) {
@@ -32,12 +35,33 @@ export class TruckIndexComponent implements OnInit {
   deleteTruck(event) {
     const r = confirm('Are you sure?');
     if (r) {
-      
+      const index = Trucks.list.findIndex(it => it.id == event.id);
+      Trucks.list.splice(
+        index,
+        1
+      );
+      this.getList();
+      alert('Delete Truck Success');
     }
-    // Call API Delete Truck
+    
   }
   
   editTruck(event) {
     this.router.navigate(['../edit', event.id], { relativeTo: this.route });
+  }
+
+  getList() {
+    this.trucks$ = of(Trucks.list).pipe(map(list => {
+      return list.map(item => {
+        return {
+          ...item,
+          cargoTypeName: this.helper.getValueFromId(item.cargoTypeId, Cargo.list),
+          statusName: this.helper.getValueFromId(item.statusId, TruckStatus.list),
+          truckTypeName: this.helper.getValueFromId(item.truckTypeId, TypeTruck.list),
+          driverName: this.helper.getValueFromId(item.driverId, Drivers.list),
+          dimension: `${item.dimensionLong}-${item.dimensionHeight}-${item.dimensionWidth}`
+        }
+      })
+    }));
   }
 }

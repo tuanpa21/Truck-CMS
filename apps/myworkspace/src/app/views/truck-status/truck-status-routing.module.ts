@@ -1,13 +1,15 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { StatusIndexComponent } from './status-index/status-index.component';
+import { RouterModule, Routes } from '@angular/router';
+
 import { StatusDetailComponent } from './status-detail/status-detail.component';
 import { StatusEditComponent } from './status-edit/status-edit.component';
+import { StatusIndexComponent } from './status-index/status-index.component';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/status/index'
+    redirectTo: 'index',
+    pathMatch: 'full'
   },
   {
     path: 'index',
@@ -15,7 +17,7 @@ const routes: Routes = [
     data: { title: 'Status Index' }
   },
   {
-    path: 'detail',
+    path: 'detail/:id',
     component: StatusDetailComponent,
     data: { title: 'Status Detail' }
   },

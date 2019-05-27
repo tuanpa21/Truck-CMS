@@ -9,7 +9,8 @@ import { CargoNewComponent } from './cargo-new/cargo-new.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/cargo-type/index'
+    redirectTo: 'index',
+    pathMatch: 'full'
   },
   {
     path: 'index',

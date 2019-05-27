@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CargoType } from '@myworkspace/api-interface';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { TableConfig } from '../../../core/components/list/list.component';
+import { Cargo } from '../../../mock/mock-data';
+import { CARGO_TYPE_CONFIG } from '../config/cargo-type-config';
 
 @Component({
   selector: 'myworkspace-cargo-index',
@@ -11,7 +14,7 @@ import { TableConfig } from '../../../core/components/list/list.component';
   styleUrls: ['./cargo-index.component.scss']
 })
 export class CargoIndexComponent implements OnInit {
-  cargo$: Observable<CargoType>;
+  cargo$: Observable<CargoType[]>;
   tableConfig: TableConfig[];
   
   constructor(
@@ -20,6 +23,8 @@ export class CargoIndexComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.tableConfig = CARGO_TYPE_CONFIG;
+    this.getList();
   }
 
   detailCargo(event) {
@@ -29,12 +34,29 @@ export class CargoIndexComponent implements OnInit {
   deleteCargo(event) {
     const r = confirm('Are you sure?');
     if (r) {
-      
+      const index = Cargo.list.findIndex(it => it.id == event.id);
+      Cargo.list.splice(
+        index,
+        1
+      );
+      this.getList();
+      alert('Delete Cargo Type Success');
     }
-    // Call API Delete Truck
+    
   }
   
   editCargo(event) {
     this.router.navigate(['../edit', event.id], { relativeTo: this.route });
+  }
+
+  getList() {
+    this.cargo$ = of(Cargo.list).pipe(map(list => {
+      return list.map(it => {
+        return {
+          ...it,
+          createdDate: (new Date()).toDateString()
+        }
+      });
+    }));
   }
 }

@@ -9,7 +9,8 @@ import { TypeNewComponent } from './type-new/type-new.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/status/index'
+    redirectTo: 'index',
+    pathMatch: 'full'
   },
   {
     path: 'index',
@@ -17,7 +18,7 @@ const routes: Routes = [
     data: { title: 'Truck Type Index' }
   },
   {
-    path: 'detail',
+    path: 'detail/:id',
     component: TypeDetailComponent,
     data: { title: 'Truck Type Detail' }
   },

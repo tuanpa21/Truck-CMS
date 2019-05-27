@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Truck } from '@myworkspace/api-interface';
-import { Observable, of } from 'rxjs';
+import { Observable, of, Subject } from 'rxjs';
+import { map, takeUntil } from 'rxjs/operators';
 
-import { MOCK_TRUCK } from '../../../core/mock-data/mock';
-import { Trucks } from '../../../mock/mock-data';
+import { HelperService } from '../../../core/services/helper.service';
+import { Cargo, Drivers, Trucks, TruckStatus, TypeTruck } from '../../../mock/mock-data';
 import { TRUCK_CONFIG } from '../config/truck-config';
 
 @Component({
@@ -12,17 +13,38 @@ import { TRUCK_CONFIG } from '../config/truck-config';
   templateUrl: './truck-detail.component.html',
   styleUrls: ['./truck-detail.component.scss']
 })
-export class TruckDetailComponent implements OnInit {
+export class TruckDetailComponent implements OnInit, OnDestroy {
   truckDetail$: Observable<Truck>;
   detailInfo: any[];
+  destroy$: Subject<boolean> = new Subject<boolean>();
   constructor(
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private helper: HelperService
   ) { }
 
   ngOnInit() {
     this.detailInfo = TRUCK_CONFIG;
-    this.truckDetail$ = of(MOCK_TRUCK[0]);
+    this.route.params.pipe(takeUntil(this.destroy$)).subscribe(param => {
+      if (param.id) {
+        const detail = Trucks.list.find(it => it.id == param.id);
+        this.truckDetail$ = of(detail).pipe(map(item => {
+            return {
+              ...item,
+              cargoTypeName: this.helper.getValueFromId(item.cargoTypeId, Cargo.list),
+              statusName: this.helper.getValueFromId(item.statusId, TruckStatus.list),
+              truckTypeName: this.helper.getValueFromId(item.truckTypeId, TypeTruck.list),
+              driverName: this.helper.getValueFromId(item.driverId, Drivers.list),
+              dimension: `${item.dimensionLong}-${item.dimensionHeight}-${item.dimensionWidth}`
+            }
+        }));
+      }
+    });
+  }
+
+  ngOnDestroy() {
+    this.destroy$.next(true);
+    this.destroy$.unsubscribe();
   }
 
   editTruck(event) {
@@ -40,6 +62,6 @@ export class TruckDetailComponent implements OnInit {
       alert('Delete Truck Success');
       this.router.navigate(['../../index'], { relativeTo: this.route });
     }
-    // Call API Delete Truck
+    
   }
 }

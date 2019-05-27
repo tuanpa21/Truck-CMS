@@ -1,3 +1,14 @@
-<p>
-  driver-edit works!
-</p>
+<div class="container">
+    <div class="card">
+      <div class="card-header">
+        Edit Driver
+      </div>
+      <div class="card-body">
+        <myworkspace-edit [formData]="driver" 
+                          [formConfig]="formConfig"
+                          (save)="submitted($event)"> 
+        </myworkspace-edit>
+    
+      </div>
+    </div>
+  </div>

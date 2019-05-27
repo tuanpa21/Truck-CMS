@@ -1,3 +1,6 @@
-<p>
-  type-detail works!
-</p>
+<myworkspace-detail
+        [item]="typeDetail$ | async"
+        [detailInfo]="detailInfo"
+        (edit)="editTruckType($event)"
+        (remove)="deleteTruckType($event)"
+></myworkspace-detail>

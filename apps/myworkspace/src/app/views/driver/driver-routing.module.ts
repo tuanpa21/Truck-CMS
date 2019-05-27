@@ -1,13 +1,15 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { DriverIndexComponent } from './driver-index/driver-index.component';
-import { DriverEditComponent } from './driver-edit/driver-edit.component';
+import { RouterModule, Routes } from '@angular/router';
+
 import { DriverDetailComponent } from './driver-detail/driver-detail.component';
+import { DriverEditComponent } from './driver-edit/driver-edit.component';
+import { DriverIndexComponent } from './driver-index/driver-index.component';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/drivers/index'
+    redirectTo: 'index',
+    pathMatch: 'full'
   },
   {
     path: 'index',
@@ -15,7 +17,7 @@ const routes: Routes = [
     data: { title: 'Drivers Index' }
   },
   {
-    path: 'detail',
+    path: 'detail/:id',
     component: DriverDetailComponent,
     data: { title: 'Driver Detail' }
   },

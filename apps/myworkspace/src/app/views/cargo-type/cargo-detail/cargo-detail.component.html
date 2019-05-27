@@ -1,3 +1,6 @@
-<p>
-  cargo-detail works!
-</p>
+<myworkspace-detail
+        [item]="cargoDetail$ | async"
+        [detailInfo]="detailInfo"
+        (edit)="editCargo($event)"
+        (remove)="deleteCargo($event)"
+></myworkspace-detail>
